@@ -7,8 +7,6 @@ import requests
 def html(url_link):
     """poišče html, podane spletne strani in ga vrne kot niz"""
     html = requests.get(url_link)
-    # with open("html1", "w", encoding="utf8") as f:
-    # print(html.text, file=f)
     return html.text
 
 #2 for loopa za mesece in dneve
@@ -51,17 +49,9 @@ def prazniki(blok: list):
 
 def poisci_podatke(blok: list):
     """iz podanega bloka poišče podatke"""
-#    if "<li>Christian <a href" in blok:
-#        return prazniki(blok)
-#    else:
     vzorec = r'<li>.*?</li>'
     return re.findall(vzorec, blok, flags=re.DOTALL)
 
-
-
-#vzorec = r"\b\d{1,4}\s\–"
-#vzorec_zacetek = r"<li><a href=\"\w+\" title="
-#vzorec_konec = r"&#91;\d&#93;</a></sup></li>"
 
 #print(len(poisci_podatke(poisci_dogodke(html("https://en.wikipedia.org/wiki/July_1")))))
 #print(len(poisci_podatke(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))))
