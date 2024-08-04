@@ -19,8 +19,8 @@ def zberi_bitke(blok_dogodka):
 def zberi_osebe_rojstvo(blok_rojstev):
     """iz bloka rojstva razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
     vzorec_rojstva = re.compile(r"<li>.*?(?P<rojstvo>\d{1,4}).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'&#8211; <a href="/wiki/.*?" title=".*?">(?P<ime>.*?)</a>', re.DOTALL)
-    vzorec_naziva = re.compile(r"\D<\/a>,?(?P<naziv>.*?)(\(|<)", re.DOTALL)
+    vzorec_imena = re.compile(r'&#8211;.*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv>.*?),? ?(\(|<)", re.DOTALL)
     vzorec_smrti = re.compile(r"<li>.*?\(d. (?P<smrt>\d{1,4})\)</li>", re.DOTALL)
 
     # for blok in bloki_rojstev:
@@ -30,9 +30,9 @@ def zberi_osebe_rojstvo(blok_rojstev):
     najdeno_smrt = vzorec_smrti.search(blok_rojstev)
 
     slovar = {}
-    #slovar.setdefault("ime", None)
-    #if najdeno_ime != None:
-    slovar["ime"] = najdeno_ime["ime"]
+    slovar.setdefault("ime", None)
+    if najdeno_ime != None:
+        slovar["ime"] = najdeno_ime["ime"]
     slovar.setdefault("naziv", None)
     if najdeno_naziv != None:
         slovar["naziv"] = najdeno_naziv["naziv"]
@@ -48,13 +48,13 @@ def zberi_osebe_rojstvo(blok_rojstev):
 
 #print(zberi_osebe_rojstvo('<li><a href="/wiki/1311" title="1311">1311</a> &#8211; <a href="/wiki/Liu_Bowen" title="Liu Bowen">Liu Bowen</a>, Chinese military strategist, statesman and poet (d. 1375)</li>'))
 # print(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))
-print(zberi_osebe_rojstvo(poisci_podatke(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))))
+#print(zberi_osebe_rojstvo(poisci_podatke(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))))
 
 def zberi_osebe_smrt(blok_smrti: list):
     """iz bloka smrti razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
     vzorec_smrti = re.compile(r"<li>.*?(?P<smrt>\d{1,4}).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'&#8211; <a href="/wiki/.*?" title=".*?">(?P<ime>.*?)</a>', re.DOTALL)
-    vzorec_naziva = re.compile(r"\D<\/a>,?(?P<naziv>.*?)(\(|<)", re.DOTALL)
+    vzorec_imena = re.compile(r'&#8211;.*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv>.*?),? ?(\(|<)", re.DOTALL)
     vzorec_rojstva = re.compile(r"<li>.*?\(b. (?P<rojstvo>\d{1,4})\)?</li>", re.DOTALL)
 
     #for blok in bloki_smrti:
@@ -80,3 +80,14 @@ def zberi_osebe_smrt(blok_smrti: list):
     return slovar
 #print(zberi_osebe_smrt(poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1")))))
 #print(poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1"))))
+
+#bloki = poisci_podatke(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))
+#for blok in bloki:
+#    print(zberi_osebe_rojstvo(blok))
+
+
+#popravi/odstrani nepotrebne narekovaje
+
+#narekovaji = """<li><a href="/wiki/1774" title="1774">1774</a> &#8211; <a href="/wiki/Henry_Fox,_1st_Baron_Holland" title="Henry Fox, 1st Baron Holland">Henry Fox, 1st Baron Holland</a>, English politician, <a href="/wiki/Secretary_of_State_for_the_Southern_Department" title="Secretary of State for the Southern Department">Secretary of State for the Southern Department</a> (b. 1705)</li>
+#<li><a href="/wiki/1782" title="1782">1782</a> &#8211; <a href="/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham" title="Charles Watson-Wentworth, 2nd Marquess of Rockingham">Charles Watson-Wentworth, 2nd Marquess of Rockingham</a>, English politician, <a href="/wiki/Prime_Minister_of_Great_Britain" class="mw-redirect" title="Prime Minister of Great Britain">Prime Minister of Great Britain</a> (b. 1730)<sup id="cite_ref-76" class="reference"><a href="#cite_note-76">&#91;76&#93;</a></sup></li>"""
+#print(zberi_osebe_smrt(narekovaji))
