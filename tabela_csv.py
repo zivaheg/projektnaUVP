@@ -4,6 +4,7 @@ from preberi_info import *
 
 
 def zapisi_csv(ime_datoteke):
+    """ustvari csv datoteko z vsemi imeni bitk"""
     with open(ime_datoteke, "w", encoding="utf8") as file:
         pisatelj = csv.writer(file)
         pisatelj.writerow(["Ime"])
@@ -19,32 +20,44 @@ def zapisi_csv(ime_datoteke):
 #zapisi_csv("dat.csv")
 
 def zapisi_csv_oseb(ime_datoteke):
+    """zapiše csv datoteko s podatki o imenu, nazivu, letnici rojstva in smrti, če sta ti podani in življensko dobo"""
     with open(ime_datoteke, "w", encoding="utf8") as file:
         pisatelj = csv.writer(file)
-        pisatelj.writerow(["Ime", "Naziv", "Rojstvo", "Smrt"])
+        pisatelj.writerow(["Ime", "Naziv", "Rojstvo", "Smrt", "Življenska doba"])
         html_koda = html("https://en.wikipedia.org/wiki/July_1")
 
-        bloki1 = poisci_podatke(poisci_rojstva(html_koda))
+        bloki1 = poisci_podatke(poisci_smrti(html_koda))
         for blok1 in bloki1:
-            slovar = zberi_osebe_rojstvo(blok1)
-            # print(slovar)
-            pisatelj.writerow([
-                slovar["ime"],
-                slovar["naziv"],
-                slovar["rojstvo"],
-                slovar["smrt"],
-                ])
-
-        bloki2 = poisci_podatke(poisci_smrti(html_koda))
-        for blok2 in bloki2:
-            slovar = zberi_osebe_smrt(blok2)
+            zivljenska_doba = r"¯\_(ツ)_/¯"
+            slovar = zberi_osebe_smrt(blok1)
+            if (slovar["rojstvo"] and slovar["smrt"]) != None:
+                #print(slovar["smrt"], slovar["rojstvo"], int(slovar["smrt"]) - int(slovar["rojstvo"]))
+                zivljenska_doba = int(slovar["smrt"]) - int(slovar["rojstvo"])
             #print(slovar)
             pisatelj.writerow([
                 slovar["ime"],
                 slovar["naziv"],
                 slovar["rojstvo"],
                 slovar["smrt"],
+                zivljenska_doba
                 ])
+
+        bloki2 = poisci_podatke(poisci_rojstva(html_koda))
+        for blok2 in bloki2:
+            zivljenska_doba = r"¯\_(ツ)_/¯"
+            slovar = zberi_osebe_rojstvo(blok2)
+            if (slovar["rojstvo"] and slovar["smrt"]) != None:
+                zivljenska_doba = int(slovar["smrt"]) - int(slovar["rojstvo"])
+                #print(slovar["smrt"], slovar["rojstvo"], int(slovar["smrt"]) - int(slovar["rojstvo"]))
+            # print(slovar)
+            pisatelj.writerow([
+                slovar["ime"],
+                slovar["naziv"],
+                slovar["rojstvo"],
+                slovar["smrt"],
+                zivljenska_doba
+                ])
+
 
 zapisi_csv_oseb("dat_oseb.csv")
 
