@@ -36,9 +36,9 @@ def zberi_osebe_rojstvo(blok_rojstev):
     slovar.setdefault("naziv", None)
     if najdeno_naziv != None:
         slovar["naziv"] = najdeno_naziv["naziv"]
-    # slovar.setdefault("rojstvo", None)
-    # if najdeno_rojstvo != None:
-    slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
+    slovar.setdefault("rojstvo", None)
+    if najdeno_rojstvo != None:
+        slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
     slovar.setdefault("smrt", None)
     if najdeno_smrt != None:
         slovar["smrt"] = najdeno_smrt["smrt"]
@@ -64,18 +64,18 @@ def zberi_osebe_smrt(blok_smrti: list):
     najdeno_smrt = vzorec_smrti.search(blok_smrti)
 
     slovar = {}
-    #slovar.setdefault("ime", None)
-    #if najdeno_ime != None:
-    slovar["ime"] = najdeno_ime["ime"]
+    slovar.setdefault("ime", None)
+    if najdeno_ime != None:
+        slovar["ime"] = najdeno_ime["ime"]
     slovar.setdefault("naziv", None)
     if najdeno_naziv != None:
         slovar["naziv"] = najdeno_naziv["naziv"]
     slovar.setdefault("rojstvo", None)
     if najdeno_rojstvo != None:
         slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
-    #slovar.setdefault("smrt", None)
-    #if najdeno_smrt != None:
-    slovar["smrt"] = najdeno_smrt["smrt"]
+    slovar.setdefault("smrt", None)
+    if najdeno_smrt != None:
+        slovar["smrt"] = najdeno_smrt["smrt"]
 
     return slovar
 #print(zberi_osebe_smrt(poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1")))))

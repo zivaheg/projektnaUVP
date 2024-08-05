@@ -9,7 +9,10 @@ def html(url_link):
     html = requests.get(url_link)
     return html.text
 
-#2 for loopa za mesece in dneve
+
+#poskus = html(https://en.wikipedia.org/wiki/January_1)
+#html("https://en.wikipedia.org/wiki/July_1")
+#print(poskus)
 
 def poisci_dogodke(niz: str):
     """iz podanega html izlušči blok dogodkov"""
@@ -34,6 +37,8 @@ def poisci_smrti(niz: str):
     return vse_pojavitve[0]
 
 #print(len(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1"))))
+
+
 
 def poisci_praznike(niz: str):
     """iz podanega html izlušči blok praznikov"""
