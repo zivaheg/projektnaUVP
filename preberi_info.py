@@ -19,8 +19,8 @@ def zberi_bitke(blok_dogodka):
 def zberi_osebe_rojstvo(blok_rojstev):
     """iz bloka rojstva razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
     vzorec_rojstva = re.compile(r"<li>.*?(?P<rojstvo>\d{1,4}).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'&#8211;.*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
-    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv>.*?),? ?(\(|<)", re.DOTALL)
+    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(<\/a>.*?<a.*?>(?P<naziv2>.*?))?(\(b. (.*?)?|<)", re.DOTALL)
     vzorec_smrti = re.compile(r"<li>.*?\(d. (?P<smrt>\d{1,4})\)</li>", re.DOTALL)
 
     # for blok in bloki_rojstev:
@@ -30,19 +30,25 @@ def zberi_osebe_rojstvo(blok_rojstev):
     najdeno_smrt = vzorec_smrti.search(blok_rojstev)
 
     slovar = {}
-    slovar.setdefault("ime", None)
-    if najdeno_ime != None:
-        slovar["ime"] = najdeno_ime["ime"]
-    slovar.setdefault("naziv", None)
+    #slovar.setdefault("ime", None)
+    #if najdeno_ime != None:
+    slovar["ime"] = najdeno_ime["ime"]
+    slovar.setdefault("naziv1", None)
+    slovar.setdefault("naziv2", None)
     if najdeno_naziv != None:
-        slovar["naziv"] = najdeno_naziv["naziv"]
-    slovar.setdefault("rojstvo", None)
-    if najdeno_rojstvo != None:
-        slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
+        if najdeno_naziv["naziv2"] != None:
+            slovar["naziv"] = najdeno_naziv["naziv1"] + najdeno_naziv["naziv2"]
+        else:
+            slovar["naziv"] = najdeno_naziv["naziv1"]
+    #slovar.setdefault("rojstvo", None)
+    #if najdeno_rojstvo != None:
+    slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
     slovar.setdefault("smrt", None)
     if najdeno_smrt != None:
         slovar["smrt"] = najdeno_smrt["smrt"]
 
+    slovar.pop("naziv1")
+    slovar.pop("naziv2")
     return slovar
     #nekej (1-4 stevilke) nekej  
 
@@ -53,8 +59,8 @@ def zberi_osebe_rojstvo(blok_rojstev):
 def zberi_osebe_smrt(blok_smrti: list):
     """iz bloka smrti razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
     vzorec_smrti = re.compile(r"<li>.*?(?P<smrt>\d{1,4}).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'&#8211;.*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
-    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv>.*?),? ?(\(|<)", re.DOTALL)
+    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_naziva = re.compile(r"\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(<\/a>.*?<a.*?>(?P<naziv2>.*?))?(\(b. (.*?)?|<)", re.DOTALL)
     vzorec_rojstva = re.compile(r"<li>.*?\(b. (?P<rojstvo>\d{1,4})\)?</li>", re.DOTALL)
 
     #for blok in bloki_smrti:
@@ -67,9 +73,13 @@ def zberi_osebe_smrt(blok_smrti: list):
     slovar.setdefault("ime", None)
     if najdeno_ime != None:
         slovar["ime"] = najdeno_ime["ime"]
-    slovar.setdefault("naziv", None)
+    #slovar.setdefault("naziv1", None)
+    slovar.setdefault("naziv2", None)
     if najdeno_naziv != None:
-        slovar["naziv"] = najdeno_naziv["naziv"]
+        if najdeno_naziv["naziv2"] != None:
+            slovar["naziv"] = najdeno_naziv["naziv1"] + " " + najdeno_naziv["naziv2"]
+        else:
+            slovar["naziv"] = najdeno_naziv["naziv1"]
     slovar.setdefault("rojstvo", None)
     if najdeno_rojstvo != None:
         slovar["rojstvo"] = najdeno_rojstvo["rojstvo"]
@@ -77,13 +87,15 @@ def zberi_osebe_smrt(blok_smrti: list):
     if najdeno_smrt != None:
         slovar["smrt"] = najdeno_smrt["smrt"]
 
+    #slovar.pop("naziv1")
+    slovar.pop("naziv2")
     return slovar
 #print(zberi_osebe_smrt(poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1")))))
 #print(poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/July_1"))))
 
-#bloki = poisci_podatke(poisci_rojstva(html("https://en.wikipedia.org/wiki/July_1")))
-#for blok in bloki:
-#    print(zberi_osebe_rojstvo(blok))
+bloki = poisci_podatke(poisci_smrti(html("https://en.wikipedia.org/wiki/January_1")))
+for blok in bloki:
+    print(zberi_osebe_smrt(blok))
 
 
 #popravi/odstrani nepotrebne narekovaje
