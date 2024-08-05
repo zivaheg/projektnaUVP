@@ -1,7 +1,7 @@
 import csv
 from preberi_bloke import *
 from preberi_info import *
-from html_dni import *
+from dodatne_funkcije import *
 
 
 def zapisi_csv(ime_datoteke):
@@ -20,13 +20,14 @@ def zapisi_csv(ime_datoteke):
 
 def zapisi_csv_oseb(ime_datoteke):
     """zapiše csv datoteko s podatki o imenu, nazivu, letnici rojstva in smrti, če sta obe podani tudi življensko dobo"""
-    with open(ime_datoteke, "a", encoding="utf8") as file:
+    with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
 
         pisatelj.writerow(["Datum", "Ime", "Naziv", "Rojstvo", "Smrt", "Življenska doba"])
         datumi = nastavi_html()
         for datum in datumi:
             [dan, mesec, url] = datum
+            mesec = prevedi_mesec(mesec)
             print(f"{dan} {mesec} {url}")
 
         #html_koda = html(f"https://en.wikipedia.org/wiki/{mesec}_{dan}")
@@ -43,7 +44,7 @@ def zapisi_csv_oseb(ime_datoteke):
                 print(slovar)
 
                 if (slovar["rojstvo"] and slovar["smrt"]) != None:
-                    zivljenska_doba = int(slovar["smrt"]) - int(slovar["rojstvo"])
+                    zivljenska_doba = funkcija_zivljenske_dobe(int(slovar["rojstvo"]), int(slovar["smrt"]))
 
                 pisatelj.writerow([
                     f"{dan}.{mesec}",
