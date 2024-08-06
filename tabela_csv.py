@@ -55,5 +55,35 @@ def zapisi_csv_oseb(ime_datoteke):
                     zivljenska_doba
                     ])
 
-zapisi_csv_oseb("dat_oseb.csv")
+#zapisi_csv_oseb("dat_oseb.csv")
 
+
+def kolicine(ime_datoteke):
+    """za vsak dan izpiše koliko je podatkov o rojstvu in smrti"""
+    with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
+        pisatelj = csv.writer(file)
+        pisatelj.writerow(["Datum","Št dogodkov", "Št rojstev", "Št smrti"])
+
+        datumi = nastavi_html()
+        for datum in datumi:
+            [dan, mesec, url] = datum
+            mesec = prevedi_mesec(mesec)
+
+            blok_dogodkov = poisci_podatke(poisci_dogodke(html(str(url))))
+            bloki_smrti = poisci_podatke(poisci_smrti(html(str(url))))
+            bloki_rojstev = poisci_podatke(poisci_rojstva(html(str(url))))
+            st_dogodkov = len(blok_dogodkov)
+            st_smrti = len(bloki_smrti)
+            st_rojstev = len(bloki_rojstev)
+            #print(st_rojstev)
+            #print(st_smrti)
+            print(f"{dan}.{mesec}")
+
+            pisatelj.writerow([
+                    f"{dan}.{mesec}",
+                    st_dogodkov,
+                    st_rojstev,
+                    st_smrti
+                    ])
+
+kolicine("st_podatkov.csv")
