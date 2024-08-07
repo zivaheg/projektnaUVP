@@ -7,11 +7,12 @@ Nekaj vprašanj, ki so motivirala projektno nalogo:
 - Koliko je podatkov za posamezen dan?
    - Je število rojstev in smrti očitno manjše 29. Februarja?
    - Ali obstaja kakšen trend za smrti ali rojstva skozi leto?
-- Kako je naša informiranost naraščala skozi leta?
+- Kako širok je razpon podatkov?
+    - Je naša informiranost skozi leta naraščala?
+    - Ali bo podaljšana življenjska doba očitna?
 - Koliko je zabeleženih bitk?
-- Ali bo podaljšana življenjska doba očitna?
-- Kateri dan imamo največ praznikov?
-- Ali obstaja korelacija med prazniki, ter rojstvom in smrtjo?
+        (- Kateri dan imamo največ praznikov?
+         - Ali obstaja korelacija med prazniki, ter rojstvom in smrtjo?)
 
 ## navodila
 Za nemoteno delovanje, mora imeti uporabnik naložene knjižnice ali pakete re, requests, pandas in csv.
