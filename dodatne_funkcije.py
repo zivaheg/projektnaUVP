@@ -1,6 +1,7 @@
 
 
 def nastavi_html():
+    """vrne seznam vseh dni v letu"""
     meseci = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     krajsi_mesci = ["April", "June", "September", "November"]
     dnevi = []
@@ -25,6 +26,7 @@ def nastavi_html():
 #print(vse_html_strani)
 
 def csv_oseb_po_dnevih():
+    """vrne url naslove vseh dni v letu"""
     meseci = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     krajsi_mesci = ["April", "June", "September", "November"]
     vsi_html = []
@@ -39,11 +41,25 @@ def csv_oseb_po_dnevih():
             vsi_html.append(f"https://en.wikipedia.org/wiki/{mesec}_{dan}")
     return vsi_html
 
+
 def funkcija_zivljenske_dobe(rojstvo, smrt):
-    if rojstvo <= smrt:
-        return smrt - rojstvo
+    """izračuna življensko dobo"""
+    if "BC" in rojstvo and "BC" not in smrt:
+        return int(rojstvo[:-3]) + int(smrt)
+    elif "BC" in rojstvo and "BC" in smrt:
+        return int(rojstvo[:-3]) - int(smrt[:-3])
     else:
-        return rojstvo + smrt
+        return int(smrt) - int(rojstvo)
+
+def letnice_pred_0(letnica):
+    if letnica != None:
+        if "BC" in letnica:
+            return int(letnica[:-3]) * (-1)
+        else:
+            return int(letnica)
+    else:
+        return None
+
 
 
 def prevedi_mesec(mesec_anglesko):
