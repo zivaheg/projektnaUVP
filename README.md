@@ -6,11 +6,10 @@ Za projektno nalogo sem se odločila analizirati podatke na spletni strani (http
 Nekaj vprašanj, ki so motivirala projektno nalogo:
 - Koliko je podatkov za posamezen dan?
    - Je število rojstev in smrti očitno manjše 29. Februarja?
+   - Ali obstaja kakšen trend za smrti ali rojstva skozi leto?
 - Kako je naša informiranost naraščala skozi leta?
 - Koliko je zabeleženih bitk?
-    - Ali se število bitk očitno spreminja skozi leto?
 - Ali bo podaljšana življenjska doba očitna?
-- Ali obstaja kakšen trend za smrti ali rojstva skozi leto?
 - Kateri dan imamo največ praznikov?
 - Ali obstaja korelacija med prazniki, ter rojstvom in smrtjo?
 
