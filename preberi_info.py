@@ -2,25 +2,29 @@ from preberi_bloke import *
 
 
 def zberi_bitke(blok_dogodka):
-    """iz dogodka izlušči samo bitko"""
-    vzorec_bitke = re.compile(r">Battle of (?P<ime_bitke>.*?)</a>", re.DOTALL)
+    """iz dogodka izlušči samo bitko ali vojno"""
+    vzorec_bitke = re.compile(r'>"?(?P<ime_bitke>Battles? of .*?)<\/a>', re.DOTALL)
+    vzorec_vojne = re.compile(r'<a.*?(w|W)ar.*?>(?P<ime_vojne>[^"]*?(w|W)ars? ?[^"]*?)<\/a>', re.DOTALL)
     najdena_bitka = vzorec_bitke.search(blok_dogodka)
+    najdena_vojna = vzorec_vojne.search(blok_dogodka)
     slovar = {}
-    slovar.setdefault("ime_bitke", None)
+    slovar.setdefault("ime bitke ali vojne", None)
     if najdena_bitka != None:
-        slovar["ime_bitke"] = najdena_bitka["ime_bitke"]
+        slovar["ime bitke ali vojne"] = najdena_bitka["ime_bitke"]
+    if najdena_vojna != None:
+        slovar["ime bitke ali vojne"] = najdena_vojna["ime_vojne"]
     return slovar
 
 #print(len(zberi_bitke(poisci_dogodke(html("https://en.wikipedia.org/wiki/July_1")))))
-#print(zberi_bitke(poisci_dogodke(html("https://en.wikipedia.org/wiki/July_1"))))
+#print(zberi_bitke(poisci_dogodke(html("https://en.wikipedia.org/wiki/January_1"))))
 
 
 def zberi_osebe_rojstvo(blok_rojstev):
     """iz bloka rojstva razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
-    vzorec_rojstva = re.compile(r"<li>.*?(?P<rojstvo>\d{1,4}).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_rojstva = re.compile(r"<li>.*?(?P<rojstvo>\d{1,4}(_BC)?).*?&#8211", re.DOTALL)
+    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>[^"]*?)<\/a>', re.DOTALL)
     vzorec_naziva = re.compile(r"\D\D\D\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(((<\/a>.*?<a.*?>)|(<a.*?>)(?P<naziv2>.*?)))?(\(d. (.*?)?|<)", re.DOTALL)
-    vzorec_smrti = re.compile(r"<li>.*?\(d. (?P<smrt>\d{1,4})\)<\/li>", re.DOTALL)
+    vzorec_smrti = re.compile(r"<li>.*?\(d. (?P<smrt>\d{1,4}( BC)?)\)<\/li>", re.DOTALL)
 
     najdeno_rojstvo = vzorec_rojstva.search(blok_rojstev)
     najdeno_ime = vzorec_imena.search(blok_rojstev)
@@ -54,10 +58,10 @@ def zberi_osebe_rojstvo(blok_rojstev):
 
 def zberi_osebe_smrt(blok_smrti: list):
     """iz bloka smrti razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju"""
-    vzorec_smrti = re.compile(r"<li>.*?(?P<smrt>\d{1,4}).*?&#8211", re.DOTALL)
+    vzorec_smrti = re.compile(r"<li>.*?(?P<smrt>\d{1,4}(_BC)?).*?&#8211", re.DOTALL)
     vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
     vzorec_naziva = re.compile(r"\D\D\D\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(((<\/a>.*?<a.*?>)|(<a.*?>)(?P<naziv2>.*?)))?(\(b. (.*?)?|<)", re.DOTALL)
-    vzorec_rojstva = re.compile(r"<li>.*?\(b. (?P<rojstvo>\d{1,4})\)?.*?<\/li>", re.DOTALL)
+    vzorec_rojstva = re.compile(r"<li>.*?\(b. (c. )?(?P<rojstvo>\d{1,4}( BC)?)\)?.*?<\/li>", re.DOTALL)
 
     #for blok in bloki_smrti:
     najdeno_ime = vzorec_imena.search(blok_smrti)
