@@ -8,7 +8,7 @@ Nekaj vprašanj, ki so motivirala projektno nalogo:
    - Je število rojstev in smrti očitno manjše 29. Februarja?
 - Kako je naša informiranost naraščala skozi leta?
 - Koliko je zabeleženih bitk?
-    - Ali bo njihovo število z leti naraščalo v primerjavi z našo informiranostjo?
+    - Ali se število bitk očitno spreminja skozi leto?
 - Ali bo podaljšana življenjska doba očitna?
 - Ali obstaja kakšen trend za smrti ali rojstva skozi leto?
 - Kateri dan imamo največ praznikov?
@@ -16,6 +16,7 @@ Nekaj vprašanj, ki so motivirala projektno nalogo:
 
 ## navodila
 Za nemoteno delovanje, mora imeti uporabnik naložene knjižnice ali pakete re, requests, pandas in csv.
+Če pri letnici zraven piše -, to pomeni da je to leto izpred našega štetja.
 
 ## kratek opis postopka
 1. preberi_bloke.py je datoteka, ki iz spletnih strani posameznih datumov pobere html in ga razdeli na bloke o rojstvu, smrti in praznikih
