@@ -1,20 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
-#def float_v_int(stolpec: int):
-#    """spremeni vrsto stolpca iz tabele """
-#    v_stevilkah = pd.to_numeric(podana_zivljenska_doba[f"{stolpec}"], downcast='signed')
-#    return v_stevilkah
 
 
 def komet_graf_za_informiranost(a, b):
+    """Graf za informiranost z že določenimi parametri"""
     plt.style.use('_mpl-gallery-nogrid')
-    
     x = a
     y = b
 
-    # plot:
     fig, ax = plt.subplots()
     ax.hist2d(x, y, bins=(np.arange(-1400, 2200, 20), np.arange(-1400, 2200, 20)))
     ax.set(xlim=(1600, 2050), ylim=(1700, 2050))
