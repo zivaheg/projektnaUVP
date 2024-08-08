@@ -2,7 +2,7 @@
 Avtor : Živa Hegler
 
 ## uvod
-Za projektno nalogo sem se odločila analizirati podatke na spletni strani (https://en.wikipedia.org/wiki/List_of_days_of_the_year), ki vsebuje seznam vseh dni v letu. Vsak izmed dni pa vsebuje seznam posebnih dogodkov, rojstev, smrti in praznikov. 
+Za projektno nalogo sem se odločila analizirati podatke na spletni strani (https://en.wikipedia.org/wiki/List_of_days_of_the_year), ki vsebuje seznam vseh dni v letu. Vsak izmed dni pa vsebuje seznam posebnih dogodkov, rojstev, smrti. Pri čemer se rojstva in smrti ne štejejo pod dogodke.
 Nekaj vprašanj, ki so motivirala projektno nalogo:
 - Koliko je podatkov za posamezen dan?
    - Je število rojstev in smrti očitno manjše 29. Februarja?
@@ -15,8 +15,9 @@ Nekaj vprašanj, ki so motivirala projektno nalogo:
          - Ali obstaja korelacija med prazniki, ter rojstvom in smrtjo?)
 
 ## navodila
-Za nemoteno delovanje, mora imeti uporabnik naložene knjižnice ali pakete re, requests, pandas in csv.
+Za nemoteno delovanje, mora imeti uporabnik naložene knjižnice ali pakete re, requests, pandas, numpy, matplotlib.pyplot in csv.
 Če pri letnici zraven piše -, to pomeni da je to leto izpred našega štetja.
+koda 404 pri življenski dobi pomeni, da je ni bilo mogoče izračunati.
 
 ## kratek opis postopka
 1. preberi_bloke.py je datoteka, ki iz spletnih strani posameznih datumov pobere html in ga razdeli na bloke o rojstvu, smrti in praznikih

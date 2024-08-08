@@ -80,3 +80,4 @@ def prevedi_mesec(mesec_anglesko):
         return "Oktober"
     else:
         return mesec_anglesko
+
