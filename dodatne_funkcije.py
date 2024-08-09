@@ -69,19 +69,27 @@ def letnice_pred_0(letnica):
 def prevedi_mesec(mesec_anglesko):
     """Prevede mesec v angleščini v mesec v slovenščini."""
     if mesec_anglesko == "January":
-        return "Januar"
+        return "januar"
     elif mesec_anglesko == "February":
-        return "Februar"
+        return "februar"
     elif mesec_anglesko == "March":
-        return "Marc"
+        return "marc"
+    elif mesec_anglesko == "April":
+        return "april"
     elif mesec_anglesko == "May":
-        return "Maj"
+        return "maj"
     elif mesec_anglesko == "June":
-        return "Junij"
+        return "junij"
     elif mesec_anglesko == "July":
-        return "Julij"
+        return "julij"
+    elif mesec_anglesko == "August":
+        return "avgust"
+    elif mesec_anglesko == "September":
+        return "september"
     elif mesec_anglesko == "October":
-        return "Oktober"
+        return "oktober"
+    elif mesec_anglesko == "November":
+        return "november"
     else:
-        return mesec_anglesko
+        return "december"
 
