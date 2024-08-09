@@ -5,7 +5,7 @@ from dodatne_funkcije import *
 
 
 def zapisi_csv(ime_datoteke):
-    """Ustvari csv datoteko z vsemi imeni bitk in vojen, ter izpisuje datume, da lahko slediš napredku."""
+    """Ustvari csv datoteko z vsemi imeni bitk in vojn, ter izpisuje datume, da lahko slediš napredku."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
         pisatelj.writerow(["Ime bitke ali vojne", "Datum"])
@@ -23,7 +23,7 @@ def zapisi_csv(ime_datoteke):
                 if slovar["ime bitke ali vojne"] != None:
                     pisatelj.writerow([slovar["ime bitke ali vojne"], f"{dan}.{mesec}"])
 
-#zapisi_csv("dat.csv")
+#zapisi_csv("dat_bitk.csv")
 
 def zapisi_csv_oseb(ime_datoteke):
     """Zapiše csv datoteko s podatki o imenu, nazivu, letnici rojstva in smrti, če sta obe podani tudi življensko dobo, ter izpisuje datume, da lahko slediš napredku."""
@@ -70,7 +70,7 @@ def kolicine(ime_datoteke):
     """Za vsak dan izpiše koliko je podatkov o rojstvu in smrti, ter izpisuje datume, da lahko slediš napredku."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
-        pisatelj.writerow(["Datum","Št dogodkov","Št bitk ali vojen", "Št rojstev", "Št smrti"])
+        pisatelj.writerow(["Datum","Št dogodkov","Št bitk ali vojn", "Št rojstev", "Št smrti"])
 
         datumi = nastavi_html()
         for datum in datumi:
