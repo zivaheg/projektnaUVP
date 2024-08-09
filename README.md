@@ -11,6 +11,7 @@ Nekaj vprašanj, ki so motivirala projektno nalogo:
     - Je naša informiranost skozi leta naraščala?
     - Ali je podaljšana življenjska doba očitna?
     - Kako je življenska doba porazdeljena?
+    - Kako so podatki porazdeljeni?
 - Koliko bitke vplivajo na ostale podatke?
     - Ali bo zaradi bitk očiten narast smrti?
 
