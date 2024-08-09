@@ -5,7 +5,7 @@ from dodatne_funkcije import *
 
 
 def zapisi_csv(ime_datoteke):
-    """Ustvari csv datoteko z vsemi imeni bitk in vojn, ter izpisuje datume, da lahko slediš napredku."""
+    """Ustvari csv datoteko z vsemi imeni bitk in vojn, ter izpisuje datume, da lahko slediš napredku (odstrani komentar)."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
         pisatelj.writerow(["Ime bitke ali vojne", "Datum"])
@@ -14,7 +14,7 @@ def zapisi_csv(ime_datoteke):
         for datum in datumi:
             [dan, mesec, url] = datum
             mesec = prevedi_mesec(mesec)
-            print(f"{dan} {mesec} {url}")
+            #print(f"{dan} {mesec} {url}")
 
             bloki = poisci_podatke(poisci_dogodke(html(str(url))))
             for blok in bloki:
@@ -26,7 +26,7 @@ def zapisi_csv(ime_datoteke):
 #zapisi_csv("dat_bitk.csv")
 
 def zapisi_csv_oseb(ime_datoteke):
-    """Zapiše csv datoteko s podatki o imenu, nazivu, letnici rojstva in smrti, če sta obe podani tudi življensko dobo, ter izpisuje datume, da lahko slediš napredku."""
+    """Zapiše csv datoteko s podatki o imenu, nazivu, letnici rojstva in smrti, če sta obe podani tudi življensko dobo, ter izpisuje datume, da lahko slediš napredku (odstrani komentar)."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
 
@@ -35,7 +35,7 @@ def zapisi_csv_oseb(ime_datoteke):
         for datum in datumi:
             [dan, mesec, url] = datum
             mesec = prevedi_mesec(mesec)
-            print(f"{dan} {mesec} {url}")
+            #print(f"{dan} {mesec} {url}")
 
             bloki_smrti = poisci_podatke(poisci_smrti(html(str(url))))
             bloki_rojstev = poisci_podatke(poisci_rojstva(html(str(url))))
@@ -46,7 +46,7 @@ def zapisi_csv_oseb(ime_datoteke):
                     slovar = zberi_osebe_smrt(blok)
                 else:
                     slovar = zberi_osebe_rojstvo(blok)
-                print(slovar)
+                #print(slovar)
 
                 if (slovar["rojstvo"] and slovar["smrt"]) != None:
                     zivljenjska_doba = funkcija_zivljenske_dobe(slovar["rojstvo"], slovar["smrt"])
@@ -67,7 +67,7 @@ def zapisi_csv_oseb(ime_datoteke):
 
 
 def kolicine(ime_datoteke):
-    """Za vsak dan izpiše koliko je podatkov o rojstvu in smrti, ter izpisuje datume, da lahko slediš napredku."""
+    """Za vsak dan izpiše koliko je podatkov o rojstvu in smrti, ter izpisuje datume, da lahko slediš napredku (odstrani komentar)."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
         pisatelj.writerow(["Datum","Št dogodkov","Št bitk ali vojn", "Št rojstev", "Št smrti"])
@@ -76,7 +76,7 @@ def kolicine(ime_datoteke):
         for datum in datumi:
             [dan, mesec, url] = datum
             mesec = prevedi_mesec(mesec)
-            print(datum)
+            #print(datum) 
 
             blok_dogodkov = poisci_podatke(poisci_dogodke(html(str(url))))
             bloki_smrti = poisci_podatke(poisci_smrti(html(str(url))))
