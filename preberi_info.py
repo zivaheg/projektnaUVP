@@ -21,7 +21,7 @@ def zberi_bitke(blok_dogodka):
 def zberi_osebe_rojstvo(blok_rojstev):
     """Iz bloka rojstva razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju."""
     vzorec_rojstva = re.compile(r"<li>.*?(?P<rojstvo>\d{1,4}(_BC)?).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>[^"]*?)<\/a>', re.DOTALL)
+    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href=\"\/wiki\/.*?\" title=\".*?\">(?P<ime>[^#]*?)<\/a>', re.DOTALL)
     vzorec_naziva = re.compile(r"\D\D\D\D\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(((<\/a>.*?<a.*?>)|(<a.*?>)(?P<naziv2>.*?)))?(\(d. (.*?)?|<)", re.DOTALL)
     vzorec_smrti = re.compile(r"<li>.*?\(d. (?P<smrt>\d{1,4}( BC)?)\)<\/li>", re.DOTALL)
 
@@ -56,7 +56,7 @@ def zberi_osebe_rojstvo(blok_rojstev):
 def zberi_osebe_smrt(blok_smrti: list):
     """Iz bloka smrti razdeli podatke na ime, naziv, rojstvo in smrt, če je podana in jih vrne v slovarju."""
     vzorec_smrti = re.compile(r"<li>.*?(?P<smrt>\d{1,4}(_BC)?).*?&#8211", re.DOTALL)
-    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>.*?)<\/a>', re.DOTALL)
+    vzorec_imena = re.compile(r'(&#8211;|–).*?<a href="\/wiki\/.*?" title=".*?">(?P<ime>[^#]*?)<\/a>', re.DOTALL)
     vzorec_naziva = re.compile(r"\D\D\D\D\D<\/a>,? (<a.*?>)?(?P<naziv1>.*?) ?(((<\/a>.*?<a.*?>)|(<a.*?>)(?P<naziv2>.*?)))?(\(b. (.*?)?|<)", re.DOTALL)
     vzorec_rojstva = re.compile(r"<li>.*?\(b. (c. )?(?P<rojstvo>\d{1,4}( BC)?)\)?.*?<\/li>", re.DOTALL)
 
