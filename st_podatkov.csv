@@ -145,7 +145,7 @@ Datum,Št. dogodkov,Št. bitk ali vojn,Št. rojstev,Št. smrti
 23.maj,49,8,203,92
 24.maj,58,11,190,100
 25.maj,59,9,230,103
-26.maj,57,13,183,111
+26.maj,57,13,184,111
 27.maj,52,10,241,108
 28.maj,44,8,195,91
 29.maj,58,11,223,116
@@ -219,7 +219,7 @@ Datum,Št. dogodkov,Št. bitk ali vojn,Št. rojstev,Št. smrti
 5.avgust,74,24,227,115
 6.avgust,42,13,178,105
 7.avgust,49,11,219,98
-8.avgust,57,9,255,102
+8.avgust,57,9,255,103
 9.avgust,45,11,223,105
 10.avgust,60,18,263,102
 11.avgust,50,9,202,102
@@ -249,7 +249,7 @@ Datum,Št. dogodkov,Št. bitk ali vojn,Št. rojstev,Št. smrti
 4.september,53,9,236,103
 5.september,59,14,277,116
 6.september,53,11,246,115
-7.september,71,12,269,138
+7.september,71,12,269,139
 8.september,75,16,305,105
 9.september,61,11,247,112
 10.september,41,8,246,113
@@ -313,7 +313,7 @@ Datum,Št. dogodkov,Št. bitk ali vojn,Št. rojstev,Št. smrti
 7.november,72,11,263,110
 8.november,60,12,256,109
 9.november,70,20,211,111
-10.november,50,9,277,101
+10.november,51,9,277,101
 11.november,67,14,230,112
 12.november,57,10,203,93
 13.november,51,10,210,98
