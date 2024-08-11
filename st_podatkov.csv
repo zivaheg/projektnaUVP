@@ -1,4 +1,4 @@
-Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
+Datum,Št. dogodkov,Št. bitk ali vojn,Št. rojstev,Št. smrti
 1.januar,115,6,253,120
 2.januar,37,7,139,86
 3.januar,53,9,199,103
@@ -47,7 +47,7 @@ Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
 15.februar,49,7,194,82
 16.februar,46,8,193,81
 17.februar,50,9,173,88
-18.februar,50,11,139,52
+18.februar,51,11,139,52
 19.februar,42,7,195,87
 20.februar,51,9,191,90
 21.februar,42,8,173,78
@@ -146,7 +146,7 @@ Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
 24.maj,58,11,190,100
 25.maj,59,9,230,103
 26.maj,57,13,183,111
-27.maj,51,10,241,108
+27.maj,52,10,241,108
 28.maj,44,8,195,91
 29.maj,58,11,223,116
 30.maj,63,9,226,122
@@ -218,15 +218,15 @@ Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
 4.avgust,46,12,228,91
 5.avgust,74,24,227,115
 6.avgust,42,13,178,105
-7.avgust,49,11,219,97
-8.avgust,57,9,255,100
-9.avgust,44,11,223,104
+7.avgust,49,11,219,98
+8.avgust,57,9,255,102
+9.avgust,45,11,223,105
 10.avgust,60,18,263,102
-11.avgust,50,9,201,102
-12.avgust,46,12,243,116
+11.avgust,50,9,202,102
+12.avgust,46,12,244,116
 13.avgust,50,10,207,98
 14.avgust,52,12,160,79
-15.avgust,95,19,226,104
+15.avgust,95,19,225,104
 16.avgust,61,15,211,111
 17.avgust,71,11,213,94
 18.avgust,52,9,209,95
@@ -243,7 +243,7 @@ Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
 29.avgust,69,16,217,103
 30.avgust,53,15,226,99
 31.avgust,50,8,248,111
-1.september,41,10,249,94
+1.september,41,10,250,94
 2.september,49,8,228,113
 3.september,57,13,243,99
 4.september,53,9,236,103
@@ -326,7 +326,7 @@ Datum,Št dogodkov,Št bitk ali vojn,Št rojstev,Št smrti
 20.november,48,11,506,134
 21.november,66,9,199,116
 22.november,33,3,218,76
-23.november,50,7,214,112
+23.november,51,7,214,112
 24.november,47,7,237,108
 25.november,60,10,219,98
 26.november,50,10,250,111

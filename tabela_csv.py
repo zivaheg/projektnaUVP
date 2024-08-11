@@ -70,13 +70,13 @@ def kolicine(ime_datoteke):
     """Za vsak dan izpiše koliko je podatkov o rojstvu in smrti, ter izpisuje datume, da lahko slediš napredku (odstrani komentar)."""
     with open(ime_datoteke, "w", encoding="utf8", newline="") as file:
         pisatelj = csv.writer(file)
-        pisatelj.writerow(["Datum","Št dogodkov","Št bitk ali vojn", "Št rojstev", "Št smrti"])
+        pisatelj.writerow(["Datum","Št. dogodkov","Št. bitk ali vojn", "Št. rojstev", "Št. smrti"])
 
         datumi = nastavi_html()
         for datum in datumi:
             [dan, mesec, url] = datum
             mesec = prevedi_mesec(mesec)
-            #print(datum) 
+            print(datum) 
 
             blok_dogodkov = poisci_podatke(poisci_dogodke(html(str(url))))
             bloki_smrti = poisci_podatke(poisci_smrti(html(str(url))))
@@ -102,4 +102,4 @@ def kolicine(ime_datoteke):
                     st_smrti
                     ])
 
-#kolicine("st_podatkov.csv")
+kolicine("st_podatkov.csv")
