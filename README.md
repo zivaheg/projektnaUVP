@@ -8,6 +8,7 @@ Nekaj vprašanj, ki so usmerjala projektno nalogo:
    - Ali je očitno manj podatkov za 29. februar?
    - Ali obstaja kakšen trend za smrti ali rojstva skozi leto?
 - Kako širok je razpon podatkov?
+    - Koliko je različnih oseb?
     - Je naša informiranost skozi leta naraščala?
     - Ali je podaljšana življenjska doba očitna?
     - Kako je življenjska doba porazdeljena?
