@@ -102,4 +102,4 @@ def kolicine(ime_datoteke):
                     st_smrti
                     ])
 
-kolicine("st_podatkov.csv")
+#kolicine("st_podatkov.csv")
